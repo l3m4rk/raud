@@ -1,10 +1,10 @@
-# RAUD
+# raud
 
 An opinionated Arch Linux-based developer workstation.
 
 `raud` is an experiment in building a reproducible Linux environment from a clean Arch Linux installation.
 
-The long-term goal is to evolve RAUD into a small developer-focused Linux distribution with its own installation flow, configuration model, update mechanism, and eventually a bootable ISO.
+The long-term goal is to evolve raud into a small developer-focused Linux distribution with its own installation flow, configuration model, update mechanism, and eventually a bootable ISO.
 
 ## v0.1
 
@@ -56,15 +56,15 @@ raud/
     └── waybar/
 ```
 
-The structure will evolve as RAUD gains support for Forge configuration, Patterns, Rites, and updates.
+The structure will evolve as raud gains support for Forge configuration, Patterns, Rites, and updates.
 
 ## Language
 
-RAUD uses a small and consistent vocabulary inspired by forging, machinery, and industrial systems.
+raud uses a small and consistent vocabulary inspired by forging, machinery, and industrial systems.
 
-| Concept               | RAUD term |
+| Concept               | raud term |
 | --------------------- | --------- |
-| Distribution          | RAUD      |
+| Distribution          | raud      |
 | Build system          | Forge     |
 | Machine configuration | Pattern   |
 | Package sets          | Patterns  |
@@ -89,7 +89,7 @@ rites/001-initial-setup.sh
 
 The aesthetic should remain subtle: industrial, mechanical, and forge-inspired.
 
-RAUD should remain a standalone Linux project rather than directly borrowing names, terminology, or lore from existing fictional universes.
+raud should remain a standalone Linux project rather than directly borrowing names, terminology, or lore from existing fictional universes.
 
 ## Installation
 
@@ -130,7 +130,7 @@ raud doctor
 * Treat configuration as reproducible state.
 * Prefer explicit conventions over hidden magic.
 * Add complexity only when it solves a real problem.
-* Keep RAUD terminology consistent across code, CLI, and documentation.
+* Keep raud terminology consistent across code, CLI, and documentation.
 
 ## Roadmap
 
@@ -141,7 +141,7 @@ Reproducible Arch-based developer workstation.
 ```text
 Clean Arch
     ↓
-RAUD installer
+raud installer
     ↓
 Patterns
     ↓
@@ -164,7 +164,7 @@ Add Rites for migrations, updates, and rollback support.
 
 ### v1.0
 
-Bootable RAUD installation image.
+Bootable raud installation image.
 
 ## Status
 

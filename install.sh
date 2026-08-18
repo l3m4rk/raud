@@ -5,17 +5,17 @@ set -Eeuo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 log() {
-    printf '\n\033[1;34m[RAUD]\033[0m %s\n' "$1"
+    printf '\n\033[1;34m[raud]\033[0m %s\n' "$1"
 }
 
 die() {
-    printf '\n\033[1;31m[RAUD ERROR]\033[0m %s\n' "$1" >&2
+    printf '\n\033[1;31m[raud ERROR]\033[0m %s\n' "$1" >&2
     exit 1
 }
 
 on_error() {
     local exit_code=$?
-    printf '\n\033[1;31m[RAUD ERROR]\033[0m installation failed at line %s\n' \
+    printf '\n\033[1;31m[raud ERROR]\033[0m installation failed at line %s\n' \
             "${BASH_LINENO[0]}" >&2
     exit "$exit_code"
 }
@@ -23,15 +23,15 @@ on_error() {
 trap on_error ERR
 
 if [[ $EUID -eq 0 ]]; then
-    die "Run the RAUD installer as a regular user, not as root."
+    die "Run the raud installer as a regular user, not as root."
 fi
 
 if [[ ! -f /etc/arch-release ]]; then
-    die "RAUD v0.1 currently supports Arch Linux only."
+    die "raud v0.1 currently supports Arch Linux only."
 fi
 
 [[ "$(uname -m)" == "x86_64" ]] \
-    || die "RAUD v0.1 supports x86_64 only."
+    || die "raud v0.1 supports x86_64 only."
 
 command -v sudo >/dev/null || die "sudo is required."
 command -v pacman >/dev/null || die "pacman is required."
@@ -101,14 +101,14 @@ install_config_dir "$ROOT/config/ghostty" "$HOME/.config/ghostty"
 log "Adding $USER to docker group"
 sudo usermod -aG docker "$USER"
 
-log "Installing RAUD CLI"
+log "Installing raud CLI"
 
 sudo install \
     -Dm 755 \
     "$ROOT/bin/raud" \
     /usr/local/bin/raud
 
-log "RAUD installation complete"
+log "raud installation complete"
 
 printf '\nReboot the machine and start Hyprland.\n'
 printf 'Then run:\n\n'

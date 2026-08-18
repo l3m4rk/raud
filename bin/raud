@@ -15,9 +15,7 @@ fail() {
 doctor_command() {
     local failures=0
     local supported_host=true
-    # echo "raud doctor"
-    # echo
-    printf 'RAUD Doctor %s\n\n' "$RAUD_VERSION"
+    printf 'raud doctor %s\n\n' "$RAUD_VERSION"
 
     if [[ -f /etc/arch-release ]]; then
         ok "Arch Linux"
@@ -83,7 +81,7 @@ doctor_command() {
     printf '\n'
 
     if (( failures == 0 )); then
-        ok "RAUD is healthy"
+        ok "raud is healthy"
         return 0
     fi
 
@@ -106,7 +104,7 @@ case "${1:-}" in
         doctor_command
         ;;
     version|--version|-v)
-        printf 'RAUD %s\n' "$RAUD_VERSION"
+        printf 'raud %s\n' "$RAUD_VERSION"
         ;;
     help|--help|-h|"")
         usage
