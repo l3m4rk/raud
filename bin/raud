@@ -13,7 +13,7 @@ missing() {
 }
 
 doctor() {
-    echo "myos doctor"
+    echo "raud doctor"
     echo
 
     commands=(
@@ -53,7 +53,7 @@ doctor() {
 
 case "${1:-}" in
     version|--version|-v)
-        echo "myos $VERSION"
+        echo "RAUD $VERSION"
         ;;
 
     doctor)
@@ -61,11 +61,11 @@ case "${1:-}" in
         ;;
     *)
         cat <<EOF
-myos $VERSION
+raud $VERSION
 
 Usage:
-    myos version
-    myos doctor
+    raud version
+    raud doctor
 EOF
         ;;
 esac

@@ -1,8 +1,8 @@
-# myos
+# raud
 
 An opinionated Arch Linux-based developer workstation.
 
-`myos` is an experiment in building a reproducible Linux environment from a clean Arch Linux installation.
+`raud` is an experiment in building a reproducible Linux environment from a clean Arch Linux installation.
 
 The long-term goal is to evolve it into a small developer-focused Linux distribution with its own installation flow, configuration, update mechanism, and eventually a bootable ISO.
 
@@ -13,7 +13,7 @@ The goal of `v0.1` is intentionally small:
 ```text
 Clean Arch Linux
       ↓
-git clone myos
+git clone raud
       ↓
 ./install.sh
       ↓
@@ -41,11 +41,11 @@ ready developer workstation
 ## Project structure
 
 ```text
-myos/
+raud/
 ├── README.md
 ├── install.sh
 ├── bin/
-│   └── myos
+│   └── raud
 ├── packages/
 │   ├── base.txt
 │   ├── desktop.txt
@@ -69,7 +69,7 @@ Clone the repository:
 
 ```bash
 git clone <repository-url>
-cd myos
+cd raud
 ```
 
 Run the installer:
@@ -81,7 +81,7 @@ Run the installer:
 After installation, reboot and verify the environment:
 
 ```bash
-myos doctor
+raud doctor
 ```
 
 ## Principles
@@ -106,7 +106,7 @@ Improve configuration management and developer tooling.
 
 ### v0.3
 
-Introduce a more capable `myos` CLI.
+Introduce a more capable `raud` CLI.
 
 ### v0.4
 

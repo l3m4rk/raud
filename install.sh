@@ -18,7 +18,7 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 if [[ ! -f /etc/arch-release ]]; then
-    fail "myos v0.1 currently supports Arch Linux only."
+    fail "raud v0.1 currently supports Arch Linux only."
 fi
 
 command -v sudo >/dev/null || fail "sudo is required."
@@ -75,10 +75,10 @@ cp -r "${ROOT}/config/hypr/." "$HOME/.config/hypr/"
 cp -r "${ROOT}/config/waybar/." "$HOME/.config/waybar/"
 cp -r "${ROOT}/config/ghostty/." "$HOME/.config/ghostty/"
 
-log "Installing myos CLI"
+log "Installing raud CLI"
 
 mkdir -p "$HOME/.local/bin"
-install -m 755 "${ROOT}/bin/myos" "$HOME/.local/bin/myos"
+install -m 755 "${ROOT}/bin/raud" "$HOME/.local/bin/raud"
 
 log "Installation complete"
 
