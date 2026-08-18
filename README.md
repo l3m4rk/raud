@@ -1,10 +1,10 @@
-# raud
+# RAUD
 
 An opinionated Arch Linux-based developer workstation.
 
 `raud` is an experiment in building a reproducible Linux environment from a clean Arch Linux installation.
 
-The long-term goal is to evolve it into a small developer-focused Linux distribution with its own installation flow, configuration, update mechanism, and eventually a bootable ISO.
+The long-term goal is to evolve RAUD into a small developer-focused Linux distribution with its own installation flow, configuration model, update mechanism, and eventually a bootable ISO.
 
 ## v0.1
 
@@ -46,7 +46,7 @@ raud/
 ├── install.sh
 ├── bin/
 │   └── raud
-├── packages/
+├── patterns/
 │   ├── base.txt
 │   ├── desktop.txt
 │   └── dev.txt
@@ -55,6 +55,41 @@ raud/
     ├── hypr/
     └── waybar/
 ```
+
+The structure will evolve as RAUD gains support for Forge configuration, Patterns, Rites, and updates.
+
+## Language
+
+RAUD uses a small and consistent vocabulary inspired by forging, machinery, and industrial systems.
+
+| Concept               | RAUD term |
+| --------------------- | --------- |
+| Distribution          | RAUD      |
+| Build system          | Forge     |
+| Machine configuration | Pattern   |
+| Package sets          | Patterns  |
+| Migration             | Rite      |
+| Health check          | Doctor    |
+| Host / machine        | Forge     |
+
+The vocabulary is part of the project architecture rather than decoration. New concepts should reuse this language where it makes sense instead of introducing generic or inconsistent naming.
+
+Examples:
+
+```text
+raud doctor
+raud forge
+
+patterns/base.txt
+patterns/desktop.txt
+patterns/dev.txt
+
+rites/001-initial-setup.sh
+```
+
+The aesthetic should remain subtle: industrial, mechanical, and forge-inspired.
+
+RAUD should remain a standalone Linux project rather than directly borrowing names, terminology, or lore from existing fictional universes.
 
 ## Installation
 
@@ -92,7 +127,10 @@ raud doctor
 * Installation should be repeatable and idempotent.
 * User shell configuration must not affect system tooling.
 * Automate decisions instead of documenting manual setup steps.
+* Treat configuration as reproducible state.
+* Prefer explicit conventions over hidden magic.
 * Add complexity only when it solves a real problem.
+* Keep RAUD terminology consistent across code, CLI, and documentation.
 
 ## Roadmap
 
@@ -100,21 +138,33 @@ raud doctor
 
 Reproducible Arch-based developer workstation.
 
+```text
+Clean Arch
+    ↓
+RAUD installer
+    ↓
+Patterns
+    ↓
+configured workstation
+    ↓
+raud doctor
+```
+
 ### v0.2
 
-Improve configuration management and developer tooling.
+Introduce a stronger configuration model based on Patterns and improve developer tooling.
 
 ### v0.3
 
-Introduce a more capable `raud` CLI.
+Expand the `raud` CLI and introduce the Forge abstraction.
 
 ### v0.4
 
-Updates, migrations, and rollback support.
+Add Rites for migrations, updates, and rollback support.
 
 ### v1.0
 
-Bootable installation image.
+Bootable RAUD installation image.
 
 ## Status
 
