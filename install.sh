@@ -84,7 +84,7 @@ sudo systemctl enable docker.service
 
 log "Configuring interactive shell"
 
-if [[ "$(getenv passwd "$USER" | cut -d: -f7)" != "/usr/bin/zsh" ]]; then
+if [[ "$(getent passwd "$USER" | cut -d: -f7)" != "/usr/bin/zsh" ]]; then
     sudo chsh -s /usr/bin/zsh "$USER"
 fi
 
