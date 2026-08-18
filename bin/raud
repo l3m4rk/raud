@@ -2,25 +2,45 @@
 
 set -euo pipefail
 
-VERSION="0.1.0"
+readonly RAUD_VERSION="0.1.0"
 
 ok() {
     printf '\033[32m✓\033[0m %s\n' "$1"
 }
 
-missing() {
+fail() {
     printf '\033[31m✗\033[0m %s\n' "$1"
 }
 
-doctor() {
-    echo "raud doctor"
-    echo
+doctor_command() {
+    local failures=0
+    local supported_host=true
+    # echo "raud doctor"
+    # echo
+    printf 'RAUD Doctor %s\n\n' "$RAUD_VERSION"
+
+    if [[ -f /etc/arch-release ]]; then
+        ok "Arch Linux"
+    else
+        fail "Arch Linux"
+        failures=$((failures + 1))
+        supported_host=false
+    fi
+
+    if [[ "$(uname -m)" == "x86_64" ]]; then
+        ok "x86_64"
+    else
+        fail "x86_64"
+        supported_host=false
+    fi
 
     commands=(
         git
-        ghostty
-        Hyrpland
+        zsh
+        Hyprland
         waybar
+        ghostty
+        wofi
         java
         docker
         kubectl
@@ -36,36 +56,62 @@ doctor() {
         if command -v "$command" >/dev/null 2>&1; then
             ok "$command"
         else
-            missing "$command"
-            failed=1
+            fail "$command"
+            failures=$((failures + 1))
         fi
     done
 
-    echo
+    if [[ "$supported_host" == true ]]; then
+        local services=(
+            NetworkManager.service
+            bluetooth.service
+            docker.service
+        )
 
-    if [[ failed -eq 0 ]]; then
-        ok "system looks healthy"
+        for service in "${services[@]}"; do
+            if systemctl is-enabled --quiet "$service" 2>/dev/null; then
+                ok "$service enabled"
+            else
+                fail "$service enabled"
+                failures=$((failures + 1))
+            fi
+        done
     else
-        missing "system has missing components"
-        exit 1
+        printf '\nSkipping system service checks on unsupported host.\n'
     fi
+
+    printf '\n'
+
+    if (( failures == 0 )); then
+        ok "RAUD is healthy"
+        return 0
+    fi
+
+    fail "$failures checks failed"
+    return 1
 }
 
-case "${1:-}" in
-    version|--version|-v)
-        echo "RAUD $VERSION"
-        ;;
-
-    doctor)
-        doctor
-        ;;
-    *)
-        cat <<EOF
-raud $VERSION
+usage() {
+    cat <<EOF
+raud $RAUD_VERSION
 
 Usage:
     raud version
     raud doctor
 EOF
+}
+
+case "${1:-}" in
+    doctor)
+        doctor_command
+        ;;
+    version|--version|-v)
+        printf 'RAUD %s\n' "$RAUD_VERSION"
+        ;;
+    help|--help|-h|"")
+        usage
+        ;;
+    *)
+        printf 'Unknown command: %s\n\n' "$1" >&2
         ;;
 esac
