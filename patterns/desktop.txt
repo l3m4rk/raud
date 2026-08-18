@@ -3,18 +3,20 @@ waybar
 ghostty
 wofi
 mako
+hyprpolkitagent
 
 networkmanager
 
 pipewire
+pipewire-audio
 pipewire-pulse
 wireplumber
 
 bluez
 bluez-utils
 
+xdg-desktop-portal
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 
-hyprpolkitagent
 xorg-xwayland

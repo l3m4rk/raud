@@ -2,6 +2,7 @@ jdk21-openjdk
 
 docker
 docker-compose
+docker-buildx
 
 kubectl
 helm
