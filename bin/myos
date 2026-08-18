@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+VERSION="0.1.0"
+
+ok() {
+    printf '\033[32m✓\033[0m %s\n' "$1"
+}
+
+missing() {
+    printf '\033[31m✗\033[0m %s\n' "$1"
+}
+
+doctor() {
+    echo "myos doctor"
+    echo
+
+    commands=(
+        git
+        ghostty
+        Hyrpland
+        waybar
+        java
+        docker
+        kubectl
+        helm
+        nvim
+        gh
+        psql
+    )
+
+    failed=0
+
+    for command in "${commands[@]}"; do
+        if command -v "$command" >/dev/null 2>&1; then
+            ok "$command"
+        else
+            missing "$command"
+            failed=1
+        fi
+    done
+
+    echo
+
+    if [[ failed -eq 0 ]]; then
+        ok "system looks healthy"
+    else
+        missing "system has missing components"
+        exit 1
+    fi
+}
+
+case "${1:-}" in
+    version|--version|-v)
+        echo "myos $VERSION"
+        ;;
+
+    doctor)
+        doctor
+        ;;
+    *)
+        cat <<EOF
+myos $VERSION
+
+Usage:
+    myos version
+    myos doctor
+EOF
+        ;;
+esac

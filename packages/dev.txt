@@ -1,0 +1,12 @@
+jdk21-openjdk
+
+docker
+docker-compose
+
+kubectl
+helm
+
+neovim
+github-cli
+
+postgresql-libs
